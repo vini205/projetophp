@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    if (!(isset($_SESSION['autenticado']) && $_SESSION['autenticado'])) {
+        http_response_code(403);
+        header('location: /');
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -34,6 +41,7 @@
             <nav class="navbar navbar-light bg-primary">
                 <div class="container-fluid">
                     <a href="#" class='navbar-brand text-light'>Minha carteira</a>
+                    <a href="/admin/logout" class=" btn text-light">Sair</a>
                 </div>
             </nav>
         </div>
@@ -43,7 +51,7 @@
                 <div class="col">
                     <ul class="nav flex-column" id="menu">
                         <li class="nav-item">
-                            <a href="admin/categoria/list" class="nav-link active bg-primary">Categoria </a>
+                            <a href="categoria/list" class="nav-link active bg-primary">Categoria </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Movimentação   </a>

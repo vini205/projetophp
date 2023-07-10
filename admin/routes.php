@@ -11,6 +11,11 @@ if( verificaUrl('/admin') || verificaUrl('/admin/')){
 }elseif (verificaUrl('/admin/categoria/list?([a-z]*)')){
     render('panel','templates/listcateg.php');
 
+}elseif (verificaUrl('/admin/login?(.*)')) {
+    require __DIR__ .'/login.php';
+    
+} elseif (verificaUrl('/admin/logout?(.*)')) {
+    require __DIR__ .'/logout.php';
 }
 else{
     echo 'Página não encontrada';
