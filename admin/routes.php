@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 include  __DIR__.'/render.php';
 
@@ -20,4 +20,4 @@ if( verificaUrl('/admin') || verificaUrl('/admin/')){
 else{
     echo 'Página não encontrada';
     http_response_code(404);
-}
+} 
