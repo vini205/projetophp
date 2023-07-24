@@ -71,6 +71,9 @@ class Router
                 $controller = $rota->getAttribute('controller');
                 $metodo = $rota->getAttribute('metodo');
                 call_user_func([$controller,$metodo],$rota->getAttribute('dados'));
+                /*
+                    essa função pega o método string 
+                */ 
             }
         }
     }

@@ -21,6 +21,7 @@ else {
     http_response_code(404);
 } */
 
+use App\Controller\CategoriaController;
 use App\Rota;
 use App\Router;
 use App\Controller\PainelController;
@@ -30,6 +31,7 @@ $caminho = $_SERVER['REQUEST_URI'];
 $router = new Router($caminho);
 $controllerPainel = new PainelController();
 $siteController = new siteController();
+$categoriaController = new CategoriaController();
 
 
 $router->add(
@@ -50,5 +52,20 @@ $router->add(
     'home'
 )
 ); 
+
+$router->add(
+    new Rota('/admin/categoria/listar',
+    $categoriaController,
+    'listarCAtegorias')
+);
+
+$router->add(
+    new Rota(
+        '/admin/categoria/cadastrar',
+        $categoriaController,
+        'cadastrar'
+    )
+    );
+
 
 $router->handler();

@@ -1,3 +1,11 @@
+<?php
+use App\TiposCategoria;
+
+$entrada = TiposCategoria::ENTRADA;
+$saida = TiposCategoria::SAIDA;
+
+?>
+
 <h3>Cadastrar categoria</h3>
 
 <form method='get'>
@@ -8,6 +16,10 @@
     <div class="mb-3">
         <label class='form-label' for="tipo">Tipo</label>
         <input type="text" class='form-control' name="tipo" id="tipo">
+        <select name="tipo" id="tipo">
+            <option value="<?= $entrada  ?>"> <?=TiposCategoria::toString($entrada) ?>  </option>
+            <option value="<?= $saida  ?>"><?= TiposCategoria::toString($saida) ?></option>
+        </select>
     </div>
     <div class='mb-3'>
         <label for="prioridade">Prioridade da categoria</label>
