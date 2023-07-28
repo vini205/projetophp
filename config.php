@@ -1,4 +1,17 @@
 <?php
+
+use App\BancoDados;
+
+$dsn = 'mysql:host=localhost;dbname=projetophp';
+$usuario = 'root';
+$senha = '';
+$pdo = new PDO($dsn, $user, $senha);// instanciar a classe fora da classe evita dependência
+
+$banco = new BancoDados($pdo);
+
+
+var_dump($banco->consultar("show tables"));
+
 /* 
 function verificaUrl($rota){
     $caminho = $_SERVER['REQUEST_URI'];

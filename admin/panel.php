@@ -51,7 +51,7 @@
                 <div class="col">
                     <ul class="nav flex-column" id="menu">
                         <li class="nav-item">
-                            <a href="admin/categoria/list" class="nav-link active bg-primary">Categoria </a>
+                            <a href="admin/categoria/listar" class="nav-link active bg-primary">Categoria </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Movimentação   </a>

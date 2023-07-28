@@ -1,6 +1,10 @@
 <?php
 
-class Categoria
+namespace App;
+
+use App\Model\Model;
+
+class Categoria implements Model
 {
     private string $nome;
     private string $tipo;
@@ -34,5 +38,9 @@ class Categoria
 
     public function getTipo(){
         return $this->tipo;
+    }
+
+    public function getAtribut(string $atributo){
+        return $this->{$atributo};
     }
 }
