@@ -12,7 +12,7 @@ class Controller
      * @return void
      */
 
-    public function render($template, $conteudo)
+    public function render($template, $conteudo, array $dados = [])
     {
         
        require __DIR__ . '/../../admin/' . $template . '.php';

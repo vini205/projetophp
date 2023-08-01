@@ -4,6 +4,7 @@ use App\TiposCategoria;
 $entrada = TiposCategoria::ENTRADA;
 $saida = TiposCategoria::SAIDA;
 
+
 ?>
 
 <h3>Cadastrar categoria</h3>

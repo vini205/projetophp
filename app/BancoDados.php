@@ -12,6 +12,12 @@ class BancoDados
         $this->conexao = $pdo;
     }
 
+    /**
+     * Executa com segurança uma consulta SQL
+     * @param string $sql O modelo SQL
+     * @param array $params Os parametros
+     * @return \PDOStatement|bool
+     */
     public function executar(string $sql, array $params = []){
         $statement = $this->conexao->prepare($sql);
         $statement->execute($params);

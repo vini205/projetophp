@@ -1,3 +1,7 @@
+<?php
+    
+?>
+
 <h1>Listagem de categorias</h1>
 <br>
 <table class="table">
@@ -9,7 +13,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+<?php
+    foreach ($dados as $categorias) {
+        
+        echo '<tr>';
+        echo '<th scope="row">'. $categorias->getAtribut('id').'</th>';
+
+        echo '<td>'.$categorias->getNome().'</td>';
+        echo '<td>'.$categorias->getTipo().'</td>';
+        
+        echo '</tr>';
+    }
+
+?>
+
+      <!--   <tr>
             <th scope="row">1</th>
             <td>Alimentação</td>
             <td>Saída</td>
@@ -23,7 +41,7 @@
             <th scope="row">3</th>
             <td>Salario</td>
             <td>Entrada</td>
-        </tr>
+        </tr> -->
     </tbody>
 </table>
 <a href="/admin/categoria/cadastrar" class='btn-secondary btn' >Cadastrar uma nova categoria</a>

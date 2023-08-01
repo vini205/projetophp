@@ -1,16 +1,5 @@
 <?php
 
-use App\BancoDados;
-
-$dsn = 'mysql:host=localhost;dbname=projetophp';
-$usuario = 'root';
-$senha = '';
-$pdo = new PDO($dsn, $user, $senha);// instanciar a classe fora da classe evita dependência
-
-$banco = new BancoDados($pdo);
-
-
-var_dump($banco->consultar("show tables"));
 
 /* 
 function verificaUrl($rota){
@@ -27,24 +16,34 @@ function verificaUrl($rota){
 if(verificaUrl('/')){
     require __DIR__.'\site\routes.php';
 } elseif (verificaUrl('/admin?(.*)')) {
-  require __DIR__.'\admin\routes.php';  
+    require __DIR__.'\admin\routes.php';  
 } 
 else {
     echo 'page not found';
     http_response_code(404);
 } */
 
+
+
+use App\Repository\categoriaRepository;
 use App\Controller\CategoriaController;
 use App\Rota;
 use App\Router;
 use App\Controller\PainelController;
 use App\Controller\siteController;
 
+$builder = require_once __DIR__.'/container.php';
+
+
 $caminho = $_SERVER['REQUEST_URI'];
 $router = new Router($caminho);
 $controllerPainel = new PainelController();
 $siteController = new siteController();
-$categoriaController = new CategoriaController();
+$categoriaController = $builder->get(CategoriaController::class);
+//$categoriaController = new CategoriaController();
+
+
+
 
 
 $router->add(
