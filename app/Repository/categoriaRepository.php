@@ -36,6 +36,7 @@ class categoriaRepository implements Repository{
         ];
         $this->bancoDados->executar($sql,$params);
     }
+
     public function toObject(array $resultado){
         $categorias = [];
         foreach($resultado as $linha){
@@ -44,5 +45,42 @@ class categoriaRepository implements Repository{
             array_push($categorias, $categoria );
         }
         return $categorias;
+    }
+
+    /**
+     * Atualiza o repositório, alterando dados únicos
+     * pelo id. Recebe um Model como parametro, com as propriedades
+     * do dado a ser atualizado
+     * @param \App\Model\Model $model
+     * @return void
+     */
+    public function atualizar(Model $model){
+        $sql = "UPDATE $this->table SET nome = :nome, tipo= :tipo WHERE id = :id";
+        $params=[
+            'nome' => $model->getAtribut('nome'),
+            'tipo' => $model->getAtribut('tipo'),
+            'id' => $model->getAtribut('id')
+        ];
+
+        $this->bancoDados->executar($sql,$params);
+
+
+    }
+
+    /**
+     * Remove um valor do repositório. Remove os itens pelo ID
+     * 
+     * @param mixed $id Id do item
+     * @return void
+     */
+    public function remover($id){
+        $sql = "UPDATE $this->table SET ativo=0 WHERE id = :id";
+        $this->bancoDados->executar($sql,['id'=> $id]);
+    }
+
+    public function obter(int $id){
+        $sql = "SELECT * FROM $this->table WHERE ID = :id";
+        $res = $this->toObject($this->bancoDados->consultar($sql, ['id' => $id]));
+        return $res[0]; 
     }
 }

@@ -20,6 +20,11 @@ class Router
     private array $rotas = [];
 
     /**
+     * Guarda os valores passados por POST
+     */
+    private array $params = [];
+
+    /**
      * Adiciona os parametros essênciais
      * @param mixed $caminho é o caminho recebido do usuário
      */
@@ -41,6 +46,17 @@ class Router
         $this->rotas[$caminho] = $rota;
     }
 
+
+   /*  private function verificarUrl(string $rota, $caminho)
+    {
+    preg_match_all('/\{([^\}]*)\}/', $rota, $variables);
+    $regex = str_replace('/', '', $rota);
+    foreach ($variables[0] as $k => $variable) { $replacement = ([a-zA-Z0-9\-\\ ]+)'; $regex = str_replace($variable, $replacement, $regex);
+    }   
+    $regex = preg_replace('/{([a-zA-Z]+)}/', '([a-zA-Z0-9+])', $regex); $result = preg_match('/^. $regex. $/, $caminho, $params); $this->params = $params;
+    return $result;
+    }
+ */
     /**
      * Recebe um caminho e verifica para onde deve ser direcionao o chamado, 
      * caso seja um valor válido
@@ -56,8 +72,14 @@ class Router
             return true;
         }   
         return false;
-    }
+    } 
     
+    
+
+    public function getParams(){
+        return $this->params;
+    }
+
     /**
      * A função que lida com os chamados
      * @return void
@@ -74,7 +96,35 @@ class Router
                 /*
                     essa função pega o método string 
                 */ 
-            }
+            } /* else{
+                http_response_code(404);
+                die('Page Not Found');
+
+            } */
         }
     }
+
+
+
+    /*
+     * Verifica se há ou não parametros a serem passados
+     * ao handler
+     * @param array $params
+     * @return array parametros, caso haja
+     
+     
+    public function verificarParams(array $params){
+        if (empty($params) && !isset($this->getParams()[1])){
+            return [];
+        }
+        if(!empty($params)){
+            return $params;
+        }
+        if(isset($this->getParams()[1]))
+            return ['id'=> $this->getParams()[1]];
+
+        return [];
+    }
+ */
+
 }

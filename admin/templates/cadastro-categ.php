@@ -9,15 +9,14 @@ $saida = TiposCategoria::SAIDA;
 
 <h3>Cadastrar categoria</h3>
 
-<form method='get'>
+<form method='post' action="/admin/categoria/novo">
     <div class="mb-3">
-        <label for="name" class='form-label' >Nome</label>
-        <input type="text" name="name" class='form-control' aria-describedby='name' id="name">
+        <label for="nome" class='form-label' >Nome</label>
+        <input type="text" name="nome" class='form-control' aria-describedby='name' id="name">
     </div>
     <div class="mb-3">
         <label class='form-label' for="tipo">Tipo</label>
-        <input type="text" class='form-control' name="tipo" id="tipo">
-        <select name="tipo" id="tipo">
+        <select class='form-select' name="tipo" id="tipo">
             <option value="<?= $entrada  ?>"> <?=TiposCategoria::toString($entrada) ?>  </option>
             <option value="<?= $saida  ?>"><?= TiposCategoria::toString($saida) ?></option>
         </select>

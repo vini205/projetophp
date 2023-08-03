@@ -26,9 +26,9 @@ class Categoria implements Model
     private int $id;
 
     /**
-     * Summary of __construct
-     * @param string $nome
-     * @param string $tipo
+     * Cria um nova categoria
+     * @param string $nome Nome da categoria
+     * @param string $tipo Tipo da categoria
      */
     public function __construct(
         string $nome='',

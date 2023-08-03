@@ -42,6 +42,7 @@ $siteController = new siteController();
 $categoriaController = $builder->get(CategoriaController::class);
 //$categoriaController = new CategoriaController();
 
+$dados = $_POST;// pegar dados vindos por post
 
 
 
@@ -79,5 +80,37 @@ $router->add(
     )
     );
 
+$router->add(
+    new Rota(
+        '/admin/categoria/novo',
+        $categoriaController,
+        'novo',
+        $dados
+    )
+    );
+
+$router->add(
+    new Rota('/admin/categoria/{id}/edicao',//id é dinâmico
+    $categoriaController,
+    'edicao',
+    $dados
+    )
+);
+
+$router->add(
+    new Rota('/admin/categoria/{id}/atualizar',
+    $categoriaController,
+    'atualizar',
+    $dados
+    )
+);
+
+$router->add(
+    new Rota('/admin/categoria/{id}/remover',
+    $categoriaController,
+    'remover',
+    $dados
+    )
+);
 
 $router->handler();
