@@ -14,7 +14,6 @@ interface Repository
     /**
      * Obtém um dados específico do repositório, baseado no ID
      * @param int $id id do item a ser buscado
-     * @return void
      */
     public function obter(int $id);
     public function atualizar(Model $model);

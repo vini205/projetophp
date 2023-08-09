@@ -47,7 +47,7 @@ class Router
     }
 
 
-   /*  private function verificarUrl(string $rota, $caminho)
+   /*  private function verificaUrl(string $rota, $caminho)
     {
     preg_match_all('/\{([^\}]*)\}/', $rota, $variables);
     $regex = str_replace('/', '', $rota);

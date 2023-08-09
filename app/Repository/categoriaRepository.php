@@ -68,7 +68,8 @@ class categoriaRepository implements Repository{
     }
 
     /**
-     * Remove um valor do repositório. Remove os itens pelo ID
+     * Remove um valor do repositório. Remove os itens pelo ID 
+     * E ele não remove propriamente, mas o desativa
      * 
      * @param mixed $id Id do item
      * @return void
