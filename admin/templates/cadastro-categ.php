@@ -27,8 +27,8 @@ $saida = TiposCategoria::SAIDA;
         <p class='form-text'>Um número que varia de 1 a 5 </p>
     </div>
     <div class='mb-3'>
-        <input type="checkbox" name="fixa" class='btn-check' id="fixa">
-        <label for="fixa" class='btn btn-outline-primary'>É uma categoria fixa?</label>
+        <input type="checkbox" name="fixo" class='btn-check' id="fixo">
+        <label for="fixo" class='btn btn-outline-primary'>É uma categoria fixa?</label>
     </div>
     <button class='btn btn-primary' type='submit'>enviar</button>
 </form>

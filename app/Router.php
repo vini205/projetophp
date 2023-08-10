@@ -46,32 +46,24 @@ class Router
         $this->rotas[$caminho] = $rota;
     }
 
-
-   /*  private function verificaUrl(string $rota, $caminho)
-    {
-    preg_match_all('/\{([^\}]*)\}/', $rota, $variables);
-    $regex = str_replace('/', '', $rota);
-    foreach ($variables[0] as $k => $variable) { $replacement = ([a-zA-Z0-9\-\\ ]+)'; $regex = str_replace($variable, $replacement, $regex);
-    }   
-    $regex = preg_replace('/{([a-zA-Z]+)}/', '([a-zA-Z0-9+])', $regex); $result = preg_match('/^. $regex. $/, $caminho, $params); $this->params = $params;
-    return $result;
-    }
- */
     /**
      * Recebe um caminho e verifica para onde deve ser direcionao o chamado, 
-     * caso seja um valor válido
+     * caso seja um valor válido, ele consegue definir parâmetros
      * @param string $rota A rota é o URI pedido, que será ou não aceito
      * @param string $caminho é o caminho recebido do usuário
      * @return bool
      */
     public function verificaUrl(string $rota, string $caminho){
-     
-        $rota = str_replace('/','\/', $rota);   // Arruma problema com \
-    
-        if (preg_match('/^'.$rota.'$/',$caminho)) {
-            return true;
-        }   
-        return false;
+        preg_match_all('/\{([^\}]*)\}/', $rota, $variables);
+        $regex = str_replace('/', '\/', $rota);
+        foreach ($variables[0] as $k => $variable) { 
+            $replacement = '([a-zA-Z0-9\-\_\ ]+)'; 
+            $regex = str_replace($variable, $replacement, $regex); 
+    }
+        $regex = preg_replace('/{([a-zA-Z]+)}/', '([a-zA-Z0-9+])', $regex); 
+        $result = preg_match('/^' . $regex. '$/', $caminho, $params); 
+        $this->params = $params;
+        return $result;
     } 
     
     
@@ -92,27 +84,20 @@ class Router
             if($res){
                 $controller = $rota->getAttribute('controller');
                 $metodo = $rota->getAttribute('metodo');
-                call_user_func([$controller,$metodo],$rota->getAttribute('dados'));
-                /*
-                    essa função pega o método string 
-                */ 
-            } /* else{
-                http_response_code(404);
-                die('Page Not Found');
-
-            } */
+                $dados = $this->verificarParams($rota->getAttribute('dados'));
+                call_user_func([$controller,$metodo],$dados);
+            } 
         }
     }
 
 
 
-    /*
+    /**
      * Verifica se há ou não parametros a serem passados
      * ao handler
      * @param array $params
      * @return array parametros, caso haja
-     
-     
+     */     
     public function verificarParams(array $params){
         if (empty($params) && !isset($this->getParams()[1])){
             return [];
@@ -125,6 +110,6 @@ class Router
 
         return [];
     }
- */
+ 
 
 }

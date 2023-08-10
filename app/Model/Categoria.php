@@ -26,17 +26,32 @@ class Categoria implements Model
     private int $id;
 
     /**
+     * A prioridade da categoria
+     * @var int
+     */
+    private int $prioridade;
+
+    /**
+     * Se a categoria é fixa ou não
+     * @var string
+     */
+    private string $fixo;
+
+    /**
      * Cria um nova categoria
      * @param string $nome Nome da categoria
      * @param string $tipo Tipo da categoria
      */
     public function __construct(
         string $nome='',
-        string $tipo= ''
+        string $tipo= '',
+        int $prioridade = 0,
+        string $fixo =''
     ){
         $this->tipo = $tipo;
         $this->nome = $nome;
-
+        $this->prioridade = $prioridade;
+        $this->fixo = $fixo;
     }
 
     /**
@@ -91,4 +106,20 @@ class Categoria implements Model
     public function getAtribut(string $atributo){
         return $this->{$atributo};
     }
+
+	/**
+	 * A prioridade da categoria
+	 * @return int
+	 */
+	public function getPrioridade(): int {
+		return $this->prioridade;
+	}
+
+	/**
+	 * Se a categoria é fixa ou não
+	 * @return string
+	 */
+	public function getFixo(): string {
+		return $this->fixo;
+	}
 }

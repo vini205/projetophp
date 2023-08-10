@@ -26,8 +26,10 @@ class CategoriaController extends Controller
     public function novo(array $dados){
         $nome = $dados['nome'];
         $tipo = $dados['tipo'];
+        $prioridade = $dados['prioridade'];
+        $fixo = $dados['fixo'];
 
-        $categoria = new Categoria($nome, $tipo);
+        $categoria = new Categoria($nome, $tipo,$prioridade,$fixo);
 
         $this->repository->salvar($categoria);
 
@@ -48,7 +50,7 @@ class CategoriaController extends Controller
      */
     public function edicao(array $dados){
         $categoria = $this->repository->obter($dados['id']);
-        $this->render('painel', 'template/editar-categoria.php', [$categoria]);
+        $this->render('panel', '/templates/editar-categoria.php', [$categoria]);
     }
 
     /**
@@ -58,7 +60,7 @@ class CategoriaController extends Controller
      * @return void
      */
     public function atualizar(array $dados){
-        $categoria = new Categoria($dados['nome'], $dados['tipo']);
+        $categoria = new Categoria($dados['nome'], $dados['tipo'], $dados['prioridade'], $dados['fixo']);
         $categoria->setId($dados['id']);
 
         $this->repository->atualizar($categoria);

@@ -29,10 +29,12 @@ class categoriaRepository implements Repository{
      * @return void
      */
     public function salvar(Model $model){
-        $sql = "INSERT INTO $this->table (nome, categoria,ativo) ValUES (:nome,:tipo,1)";
+        $sql = "INSERT INTO $this->table (nome, tipo,ativo,prioridade,fixo) ValUES (:nome,:tipo,1)";
         $params = [
             'nome' => $model->getAtribut('nome'),
-            'tipo' => $model->getAtribut('tipo')
+            'tipo' => $model->getAtribut('tipo'),
+            'prioridade' => $model->getAtribut('prioridade'),
+            'fixo' => $model->getAtribut('fixo')
         ];
         $this->bancoDados->executar($sql,$params);
     }
@@ -40,7 +42,7 @@ class categoriaRepository implements Repository{
     public function toObject(array $resultado){
         $categorias = [];
         foreach($resultado as $linha){
-            $categoria = new Categoria($linha['nome'],$linha['categoria']);
+            $categoria = new Categoria($linha['nome'],$linha['categoria'], $linha['prioridade'], $linha['fixo']);
             $categoria->setId($linha['ID']);
             array_push($categorias, $categoria );
         }
@@ -55,11 +57,13 @@ class categoriaRepository implements Repository{
      * @return void
      */
     public function atualizar(Model $model){
-        $sql = "UPDATE $this->table SET nome = :nome, tipo= :tipo WHERE id = :id";
+        $sql = "UPDATE $this->table SET nome = :nome, categoria= :tipo, prioridade=:prioridade,fixo=:fixo WHERE id = :id";
         $params=[
             'nome' => $model->getAtribut('nome'),
             'tipo' => $model->getAtribut('tipo'),
-            'id' => $model->getAtribut('id')
+            'id' => $model->getAtribut('id'),
+            'prioridade'=>$model->getAtribut('prioridade'),
+            'fixo'=>$model->getAtribut('fixo')
         ];
 
         $this->bancoDados->executar($sql,$params);
