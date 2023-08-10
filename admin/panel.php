@@ -33,6 +33,9 @@
                 color:#fff;
                 background-color:#3434eb;
             }
+            td {
+               text-align: center;
+            }           
         </style>
     </head>
     <body>

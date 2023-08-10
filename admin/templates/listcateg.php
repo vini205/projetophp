@@ -10,6 +10,8 @@
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Tipo</th>
+            <th scope='col'>Prioridade</th>
+            <th scope="col">Fixa/Variável</th>
             <th scope='col'>Editar </th>
             <th scope="col">Excluir</th>
         </tr>
@@ -25,6 +27,9 @@
 
         echo '<td>'.$categorias->getNome().'</td>';
         echo '<td>'.App\TiposCategoria::toString($categorias->getTipo()).'</td>';
+        echo '<td>'.App\TiposCategoria::toString($categorias->getPrioridade()).'</td>';
+        
+        echo '<td>'.App\TiposCategoria::toString($categorias->getFixo()).'</td>';
         echo "<td style='width:5px;'> $linkEditar </td>"; 
         echo "<td style='width:5px;'> $linkRemover </td>"; 
         echo '</tr>';

@@ -25,11 +25,12 @@ $categoria = $dados[0];
     </div>
     <div class='mb-3'>
         <label for="prioridade">Prioridade da categoria</label>
-        <input type="number" class='form-control' min='1' max='5' step='1' name='prioridade' id='prioridade'>
+        <input type="number" class='form-control' min='1' max='5' value="<?=$categoria->getPrioridade()?>" step='1' name='prioridade' id='prioridade'>
         <p class='form-text'>Um número que varia de 1 a 5 </p>
     </div>
+    
     <div class='mb-3'>
-        <input type="checkbox" name="fixo" class='btn-check' id="fixo">
+        <input type="checkbox" name="fixo" <?php if($categoria->getFixo()== '0'){echo 'checked';} ?> class='btn-check' id="fixo">
         <label for="fixo" class='btn btn-outline-primary'>É uma categoria fixa?</label>
     </div>
     <input type="hidden" value="<?= $categoria->getAtribut('id') ?>" name='id'>

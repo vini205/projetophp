@@ -32,10 +32,10 @@ class CategoriaController extends Controller
         $categoria = new Categoria($nome, $tipo,$prioridade,$fixo);
 
         $this->repository->salvar($categoria);
-
+        
         $this->listarCategorias();
     }
-
+    
     public function listarCategorias()
     {
         $categorias = $this->repository->listar();

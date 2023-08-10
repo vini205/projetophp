@@ -51,7 +51,11 @@ class Categoria implements Model
         $this->tipo = $tipo;
         $this->nome = $nome;
         $this->prioridade = $prioridade;
-        $this->fixo = $fixo;
+        if ($fixo == 'on'){
+            $this->fixo = '1';
+        }else{
+            $this->fixo = '0';
+        }
     }
 
     /**

@@ -29,7 +29,7 @@ class categoriaRepository implements Repository{
      * @return void
      */
     public function salvar(Model $model){
-        $sql = "INSERT INTO $this->table (nome, tipo,ativo,prioridade,fixo) ValUES (:nome,:tipo,1)";
+        $sql = "INSERT INTO $this->table (nome, tipo,prioridade,fixo,ativo) ValUES (:nome,:tipo,:prioridade,:fixo,1)";
         $params = [
             'nome' => $model->getAtribut('nome'),
             'tipo' => $model->getAtribut('tipo'),
@@ -42,7 +42,7 @@ class categoriaRepository implements Repository{
     public function toObject(array $resultado){
         $categorias = [];
         foreach($resultado as $linha){
-            $categoria = new Categoria($linha['nome'],$linha['categoria'], $linha['prioridade'], $linha['fixo']);
+            $categoria = new Categoria($linha['nome'],$linha['tipo'], $linha['prioridade'], $linha['fixo']);
             $categoria->setId($linha['ID']);
             array_push($categorias, $categoria );
         }
@@ -57,7 +57,7 @@ class categoriaRepository implements Repository{
      * @return void
      */
     public function atualizar(Model $model){
-        $sql = "UPDATE $this->table SET nome = :nome, categoria= :tipo, prioridade=:prioridade,fixo=:fixo WHERE id = :id";
+        $sql = "UPDATE $this->table SET nome = :nome, tipo= :tipo, prioridade=:prioridade,fixo=:fixo WHERE id = :id";
         $params=[
             'nome' => $model->getAtribut('nome'),
             'tipo' => $model->getAtribut('tipo'),
