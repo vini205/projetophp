@@ -15,7 +15,7 @@ class Categoria implements Model
      */
     private string $nome;
     /**
-     * Tipo da categoria
+     * Tipo da categoria, sendo ele ENTRADA ou SAIDA
      * @var string
      */
     private string $tipo;

@@ -4,6 +4,12 @@
         http_response_code(403);
         header('location: /');
     }
+    $urlAtual = $_SERVER['REQUEST_URI'];
+    $categoriaAtiva = false;
+    if(strpos($urlAtual, 'categoria') > 1){
+        $categoriaAtiva = true;
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,14 +37,15 @@
             }
             #menu .nav-link.active{
                 color:#fff;
-                background-color:#3434eb;
+                background-color:#0D6EFD;
             }
-            td {
+            td,th {
                text-align: center;
             }           
         </style>
     </head>
     <body>
+        
         <div id="header">
 
             <nav class="navbar navbar-light bg-primary">
@@ -54,10 +61,10 @@
                 <div class="col">
                     <ul class="nav flex-column" id="menu">
                         <li class="nav-item">
-                            <a href="admin/categoria/listar" class="nav-link active bg-primary">Categoria </a>
+                            <a href="#" class="nav-link <?php if(!$categoriaAtiva) echo 'active';?>"   >Movimentação   </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Movimentação   </a>
+                            <a href="admin/categoria/listar" class="nav-link <?php if($categoriaAtiva) echo 'active'; ?>" aria-current="page" >Categoria </a>
                         </li>
                     </ul>
                 </div>
