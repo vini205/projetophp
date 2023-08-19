@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\BancoDados;
+use App\Exceptions\BancoDadosExeception;
 use App\Model\Model;
 use App\Model\Movimentacao;
 use App\Repository\Repository;
@@ -23,10 +24,18 @@ class MovimentacaoRepository implements Repository{
 
     public function criar(array $dados){
         $valor = $dados['valor'];
-        $categoria = $this->categoriaRepository->obter($dados['categoria']);
-        $movimentacao = new Movimentacao($valor,$categoria,$dados['descricao']);
 
-        $this->salvar($movimentacao);
+        try {
+            $this->banco->iniciarTransacao(); 
+            $categoria = $this->categoriaRepository->obter($dados['categoria']);
+            $movimentacao = new Movimentacao($valor,$categoria,$dados['descricao']);
+            $this->salvar($movimentacao);
+            $this->banco->commit();
+
+        } catch (BancoDadosExeception $exeception) {
+            $this->banco->rollBack();
+            die('Não foi possível realizar a movimentação');
+        }
     }
     
      public function listar(){

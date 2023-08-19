@@ -1,4 +1,4 @@
-<h3>Movimentacao</h3>
+<h3>Movimentação</h3>
 <br>
 
 <form action="/admin/movimentacao/novo" method="POST">

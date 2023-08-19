@@ -3,6 +3,7 @@
 namespace App;
 
 use PDO; # Classe do  php para banco de dados em POO
+use App\Exceptions\BancoDadosExeception;
 
 class BancoDados 
 {
@@ -19,14 +20,39 @@ class BancoDados
      * @return \PDOStatement|bool
      */
     public function executar(string $sql, array $params = []){
-        $statement = $this->conexao->prepare($sql);
-        $statement->execute($params);
-        return $statement;
+        try {
+            $statement = $this->conexao->prepare($sql);
+            $statement->execute($params);
+            return $statement;
+        } catch (\PDOException $err) {
+            throw new BancoDadosException("Houve um erro");
+            
+        }
+       
     }
 
     public function consultar(string $sql, array $params = []){
-        $res = $this->executar($sql,$params);
-        return $res->fetchAll(PDO::FETCH_ASSOC); # retorna uma array com os elementos associados
+        try {
+            $res = $this->executar($sql,$params);
+            return $res->fetchAll(PDO::FETCH_ASSOC); # retorna uma array com os elementos associados
+        } catch (\PDOException $err) {
+            throw new BancoDadosException("Houve um erro");    
+        }
+    }
+
+    public function iniciarTransacao(){
+        $this->conexao->beginTransaction();
+    }
+    /* é para ter controle da transação, vc inicia a transação e 
+    dps commita, mas caso der algo errado, pode se dar o Rollback, voltar atrás.
+    */
+    public function commit()
+    {
+        $this->conexao->commit();
+    }
+
+    public function rollBack(){
+        $this->conexao->rollBack();
     }
 
 }
