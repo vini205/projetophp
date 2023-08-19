@@ -61,10 +61,10 @@
                 <div class="col">
                     <ul class="nav flex-column" id="menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link <?php if(!$categoriaAtiva) echo 'active';?>"   >Movimentação   </a>
+                            <a href="/admin/movimentacao/listar" class="nav-link <?php if(!$categoriaAtiva) echo 'active';?>"   >Movimentação   </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin/categoria/listar" class="nav-link <?php if($categoriaAtiva) echo 'active'; ?>" aria-current="page" >Categoria </a>
+                            <a href="/admin/categoria/listar" class="nav-link <?php if($categoriaAtiva) echo 'active'; ?>" aria-current="page" >Categoria </a>
                         </li>
                     </ul>
                 </div>

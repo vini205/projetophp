@@ -7,7 +7,7 @@ use App\Controller\Controller;
 class PainelController extends Controller{
     public function listar()
     {
-        $this->render('panel','/templates/home.php');
+        header('location: /admin/movimentacao/listar');
     }
     public function logar()# o login e logout são páginas separadas
     {

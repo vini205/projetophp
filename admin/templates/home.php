@@ -1,12 +1,10 @@
 <?php
 
-use App\Model\Categoria;
-use App\Model\Movimentacao;
 
-$categoria = new Categoria('teste','ENTRADA',2,'1');
-$movimentacoes = [new Movimentacao(10, $categoria, 'teste de movimentação'), new Movimentacao(12,$categoria, 'teste 2')];
 
-$saldo =30;
+$movimentacoes = $dados['movimentacoes'];
+
+$saldo =$dados['saldo'];
 
 $color = ($saldo < 0 ) ? 'color:red;': 'color:green;';
 
@@ -46,3 +44,5 @@ $color = ($saldo < 0 ) ? 'color:red;': 'color:green;';
         ?>
     </tbody>
 </table>
+
+<a href="/admin/movimentacao/cadastrar" class='btn btn-secondary'>Novo</a>

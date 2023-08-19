@@ -31,6 +31,7 @@ use App\Rota;
 use App\Router;
 use App\Controller\PainelController;
 use App\Controller\siteController;
+use App\Controller\MovimentacaoController;
 
 $builder = require_once __DIR__.'/container.php';
 
@@ -40,7 +41,7 @@ $router = new Router($caminho);
 $controllerPainel = new PainelController();
 $siteController = new siteController();
 $categoriaController = $builder->get(CategoriaController::class);
-//$categoriaController = new CategoriaController();
+$movimentacaoController = $builder->get(MovimentacaoController::class);
 
 $dados = $_POST;// pegar dados vindos por post
 
@@ -48,7 +49,7 @@ $dados = $_POST;// pegar dados vindos por post
 
 
 $router->add(
-    new Rota('/admin',$controllerPainel,'listar')
+    new Rota('/admin/',$controllerPainel,'listar')
 );
 
 $router->add(
@@ -109,6 +110,30 @@ $router->add(
     new Rota('/admin/categoria/{id}/remover',
     $categoriaController,
     'remover',
+    $dados
+    )
+);
+
+$router->add(
+    new Rota('/admin/movimentacao/cadastrar',
+    $movimentacaoController,
+    'cadastrar',
+    )
+);
+
+$router->add(
+    new Rota('/admin/movimentacao/novo',
+    $movimentacaoController,
+    'novo',
+    $dados
+    )
+);
+
+
+$router->add(
+    new Rota('/admin/movimentacao/listar?(.*)',
+    $movimentacaoController,
+    'listar',
     $dados
     )
 );

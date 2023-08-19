@@ -17,6 +17,10 @@ class categoriaRepository implements Repository{
         $this->table = "categorias";
     }
 
+    /**
+     * Lista os itens ativos do repositório
+     * @return array
+     */
     public function listar(){
         $sql = "SELECT * from $this->table where ativo = 1";
         $res = $this->bancoDados->consultar($sql);
